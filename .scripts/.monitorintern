@@ -1,0 +1,9 @@
+#!/bin/bash
+xrandr --output LVDS1 --mode 1280x800
+killall conky &
+killall tint2 &
+nitrogen --restore &
+sleep 5 && tint2 &
+sleep 5 && conky -q 
+
+exit

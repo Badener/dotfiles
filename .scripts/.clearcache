@@ -1,0 +1,10 @@
+#! /bin/bash
+#This deletes the temporary files
+rm -r /home/marcel/.adobe/
+rm -r /home/marcel/.macromedia/Flash_Player/#SharedObjects/*
+rm -r /home/marcel/.mozilla/firefox/2dvb27d8.default/Cache/*
+rm -r /home/marcel/.cache/chromium/Default/Cache/*
+rm -r /home/marcel/.cache/chromium/Default/Media Cache/*
+rm -r /home/marcel/.thumbnails/normal/*
+
+exit
