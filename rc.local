@@ -1,15 +1,1 @@
-#!/bin/bash
-#
-# /etc/rc.local: Local multi-user startup script.
-#
-#hdparm -W1 /dev/sda
-#hdparm -c1 /dev/sda
-
-#set ondemand governor
-echo "ondemand" | tee /sys/devices/system/cpu/cpu[$(< /sys/devices/system/cpu/online)]/cpufreq/scaling_governor >/dev/null
-
-#Changing the on-demand governor's threshold
-echo -n 25 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 
-
-#On-demand governor sampling_down_factor
-echo -n 10 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+/etc/rc.local

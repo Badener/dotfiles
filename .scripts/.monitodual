@@ -1,7 +1,0 @@
-#!/bin/bash
-xrandr --output VGA1 --mode 1440x900 --right-of LVDS1
-killall conky &
-nitrogen --restore &
-sleep 5 && conky -q 
-
-exit
