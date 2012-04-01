@@ -1,0 +1,15 @@
+tint2 &
+volumeicon -b &
+parcellite &
+nitrogen --restore &
+/home/marcel/.scripts/touchoff.bash &
+sleep 5 && conky -q &
+#/home/marcel/.scripts/.clearcache &
+#xcompmgr &
+#xbacklight -set 100 &
+#/usr/bin/synclient TouchpadOff=1 &
+#batti &
+#fbxkb &
+
+
+exit
