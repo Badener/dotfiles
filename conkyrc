@@ -1,1 +1,78 @@
-/home/marcel/.conkyrc
+######################
+# - Conky settings - #
+######################
+update_interval 1
+total_run_times 0
+net_avg_samples 1
+cpu_avg_samples 2
+
+imlib_cache_size 0
+double_buffer yes
+no_buffers yes
+
+#####################
+# - Text settings - #
+#####################
+use_xft yes
+xftfont Ubuntu:size=8
+override_utf8_locale yes
+text_buffer_size 2048
+
+#############################
+# - Window specifications - #
+#############################
+own_window_class Conky
+own_window yes
+own_window_type desktop
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+#own_window_argb_visual yes
+#own_window_argb_value 100
+
+alignment tr
+gap_x 0
+gap_y 0
+minimum_size 190 180
+
+
+default_bar_size 60 8
+
+#########################
+# - Graphics settings - #
+#########################
+draw_shades no
+
+default_color ffffff
+default_shade_color 3d3d3d
+color0 ffffff
+color1 ffffff
+color2 
+
+
+TEXT
+#${voffset 7}${alignc 0}${font Ubuntu:style=Bold:size=9}${time %a - %d %B}${font} 
+
+${voffset -3}${goto 40}${font Ubuntu:style=Bold:size=9}SYSTEM: ${alignr 20}$kernel${font}
+
+${goto 40}CPU1: ${font Ubuntu:style=Bold:size=8}${color1}${cpu cpu1}%${font} ${alignr 25}${font Ubuntu:style=Bold:size=8}${color1}${alignr 15}${acpitemp} °C${color}${font}  
+${goto 40}CPU2: ${font Ubuntu:style=Bold:size=8}${color1}${cpu cpu2}%${font}${alignr 25}${font Ubuntu:style=Bold:size=9}${color1}${color}${font}  
+${goto 40}CPU-CLOCK: ${font Ubuntu:style=Bold:size=8}${color1}${alignr 21}${freq} MHz${font}${font Ubuntu:style=Bold:size=9}
+
+${goto 40}${color}RAM: ${font Ubuntu:style=Bold:size=8}${color1}${memperc}%${font} 
+${goto 40}${color}F: ${font Ubuntu:style=Bold:size=8}${color1}${memeasyfree}${font}${color} U: ${color1}${font Ubuntu:style=Bold:size=8}${mem}${color}${font} 
+
+${voffset -3}${goto 40}${font Ubuntu:style=Bold:size=9}DISK: ${font}
+${goto 40}${color}Root: ${font Ubuntu:style=Bold:size=8}${color1}${alignr 22}${fs_free /} / ${fs_size /}${color}${font}
+${goto 40}${color}Home: ${font Ubuntu:style=Bold:size=8}${color1}${alignr 19}${fs_free /home/} / ${fs_size /home/}${color}${font} 
+
+${voffset 0}${goto 40}${font Ubuntu:style=Bold:size=9}WEATHER: ${font}
+${goto 40}${font Ubuntu:style=Bold:size=8}${color1}${execi 300 /home/marcel/.scripts/weather.sh "EUR|DE|GM001|BRETTEN"}${color}${font}
+
+${voffset 0}${goto 40}${font Ubuntu:style=Bold:size=9}DEADBEEF: ${font}
+${goto 40}${color}Artist:${alignr 20}${color1}${scroll 20 2${execi 2 deadbeef --nowplaying "%a"}}
+${goto 40}${color}Title:${alignr 20}${color1}${scroll 16 2${execi 2 deadbeef --nowplaying "%t"}}
+
+${voffset -3}${goto 40}${color}${font Ubuntu:style=Bold:size=9}BATT.: ${font}
+${goto 40}${voffset -12}${font Ubuntu:style=Bold:size=8}${color1}${alignr 19}$battery${color}${font}
+${goto 40}${voffset 2}${font Ubuntu:style=Bold:size=8}${color1}${alignr 20}$battery_time${color}${font}
+${image ~/.conky/BG.png -p 10,-10 -s 181x316}
