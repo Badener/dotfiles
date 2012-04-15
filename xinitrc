@@ -13,6 +13,11 @@ xset fp rehash
 #pkill -u $USER xfconfd
 #pkill -u $USER gconfd-2
 #pkill -u $USER dbus-daemon
-xset -dpms;xset s noblank
+
+# turn off default screensaver
+xset s off
+# Set gamma correction
+xgamma -rgamma 1.05 -ggamma 1.15 -bgamma 1.136
+
 dbus-launch pcmanfm
 #exec awesome

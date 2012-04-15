@@ -8,13 +8,14 @@ cpu_avg_samples 2
 
 imlib_cache_size 0
 double_buffer yes
-no_buffers yes
+no_buffers no
 
 #####################
 # - Text settings - #
 #####################
 use_xft yes
-xftfont Ubuntu:size=8
+xftfont Ubuntu Beta:size=8
+xftalpha 0.8
 override_utf8_locale yes
 text_buffer_size 2048
 
@@ -23,25 +24,25 @@ text_buffer_size 2048
 #############################
 own_window_class Conky
 own_window yes
-own_window_type desktop
+own_window_type normal
 own_window_transparent yes
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 #own_window_argb_visual yes
 #own_window_argb_value 100
 
 alignment tr
-gap_x 0
+gap_x 10
 gap_y 0
-minimum_size 190 180
+minimum_size 190 200
 
 
-default_bar_size 60 8
+#default_bar_size 60 8
 
 #########################
 # - Graphics settings - #
 #########################
 draw_shades no
-
+uppercase no
 default_color ffffff
 default_shade_color 3d3d3d
 color0 ffffff
@@ -50,29 +51,26 @@ color2
 
 
 TEXT
-#${voffset 7}${alignc 0}${font Ubuntu:style=Bold:size=9}${time %a - %d %B}${font} 
 
-${voffset -3}${goto 40}${font Ubuntu:style=Bold:size=9}SYSTEM: ${alignr 20}$kernel${font}
+${voffset -5}${goto 40}${font Ubuntu:style=Bold:size=9}SYSTEM: $alignr$kernel${color}${font}
 
-${goto 40}CPU1: ${font Ubuntu:style=Bold:size=8}${color1}${cpu cpu1}%${font} ${alignr 25}${font Ubuntu:style=Bold:size=8}${color1}${alignr 15}${acpitemp} °C${color}${font}  
-${goto 40}CPU2: ${font Ubuntu:style=Bold:size=8}${color1}${cpu cpu2}%${font}${alignr 25}${font Ubuntu:style=Bold:size=9}${color1}${color}${font}  
-${goto 40}CPU-CLOCK: ${font Ubuntu:style=Bold:size=8}${color1}${alignr 21}${freq} MHz${font}${font Ubuntu:style=Bold:size=9}
+${goto 40}Cpu1: $alignc${color1}${freq_g 1}GHz${alignr 7}${cpu cpu1}%$alignr${hwmon 1 temp 1}°C${font}
+${goto 40}Cpu2: $alignc${color1}${freq_g 2}GHz${alignr 7}${cpu cpu2}%$alignr${hwmon 1 temp 2}°C${font}
+${goto 40}${color}Ram: ${goto 77}${mem}${alignr 34}${memperc}%${color}${font}
 
-${goto 40}${color}RAM: ${font Ubuntu:style=Bold:size=8}${color1}${memperc}%${font} 
-${goto 40}${color}F: ${font Ubuntu:style=Bold:size=8}${color1}${memeasyfree}${font}${color} U: ${color1}${font Ubuntu:style=Bold:size=8}${mem}${color}${font} 
+${goto 40}${font Ubuntu:style=Bold:size=9}DISK: ${font}
+${goto 40}${color}Root: ${font Ubuntu:style=Bold:size=8}${color1}${alignr 0}${fs_used /} / ${fs_size /}${color}${font}
+${goto 40}${color}Home: ${font Ubuntu:style=Bold:size=8}${color1}${alignr -3}${fs_used /home/} / ${fs_size /home/}${color}${font} 
+#${goto 40}${color}HDD: ${color}${execi 300 hddtemp /dev/sda | cut -c33-37}
 
-${voffset -3}${goto 40}${font Ubuntu:style=Bold:size=9}DISK: ${font}
-${goto 40}${color}Root: ${font Ubuntu:style=Bold:size=8}${color1}${alignr 22}${fs_free /} / ${fs_size /}${color}${font}
-${goto 40}${color}Home: ${font Ubuntu:style=Bold:size=8}${color1}${alignr 19}${fs_free /home/} / ${fs_size /home/}${color}${font} 
-
-${voffset 0}${goto 40}${font Ubuntu:style=Bold:size=9}WEATHER: ${font}
-${goto 40}${font Ubuntu:style=Bold:size=8}${color1}${execi 300 /home/marcel/.scripts/weather.sh "EUR|DE|GM001|BRETTEN"}${color}${font}
+${goto 40}${font Ubuntu:style=Bold:size=9}WEATHER: ${font}
+${goto 40}${color1}${execi 300 /home/marcel/.scripts/weather.sh "EUR|DE|GM001|BRETTEN"}${color}${font}
 
 ${voffset 0}${goto 40}${font Ubuntu:style=Bold:size=9}DEADBEEF: ${font}
-${goto 40}${color}Artist:${alignr 20}${color1}${scroll 20 2${execi 2 deadbeef --nowplaying "%a"}}
-${goto 40}${color}Title:${alignr 20}${color1}${scroll 16 2${execi 2 deadbeef --nowplaying "%t"}}
+${alignr 10}${color1}${scroll 20 2${execi 2 deadbeef --nowplaying "%a"}}
+${alignr 10}${color1}${scroll 20 2${execi 2 deadbeef --nowplaying "%t"}}
 
-${voffset -3}${goto 40}${color}${font Ubuntu:style=Bold:size=9}BATT.: ${font}
-${goto 40}${voffset -12}${font Ubuntu:style=Bold:size=8}${color1}${alignr 19}$battery${color}${font}
-${goto 40}${voffset 2}${font Ubuntu:style=Bold:size=8}${color1}${alignr 20}$battery_time${color}${font}
-${image ~/.conky/BG.png -p 10,-10 -s 181x316}
+${goto 40}${color}${font Ubuntu:style=Bold:size=9}BATTERY: ${font}
+${goto 40}${color1}$battery${alignr 0}${if_smapi_bat_installed 0}${smapi_bat_power 0}W${endif}${color}${font}
+${goto 40}${color1}$battery_time${color}${alignr 0}${smapi_bat_temp 0}°C${color}${font}
+${image ~/.conky/BG.png -p 18,-10 -s 200x310}
